@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo20</title>
+	<style>
+		div{
+			position: relative;
+			padding:10px;
+			width: 200px;
+			height: 50px;
+			border:1px solid #ccc;
+			display: inline-block;
+			background-color: white;
+			margin-top: 40px;
+			margin-right: 20px;
+		}
+		.bubble1:before{
+			position: absolute;		
+			content: '';
+			width: 20px;
+			height: 20px;
+			background-color: #ccc;
+			display: inline-block;
+			transform: rotateZ(45deg);
+			top:-10px;
+			z-index: -1;
+		}
+		.bubble2:before{
+			position: absolute;
+			content: '';
+			width: 20px;
+			height: 20px;
+			background-color: red;
+			display: inline-block;
+			transform: rotateZ(45deg);
+			top: -10px;
+			right:-10px;
+
+		}
+		.bubble2{
+			overflow: hidden;
+		}
+		.bubble3:before{
+			position: absolute;		
+			content: '';
+			width: 20px;
+			height: 20px;
+			background-color: white;
+			border-top: 1px solid #ccc;
+			border-left: 1px solid #ccc;
+			display: inline-block;
+			transform: rotateZ(45deg);
+			top:-11px;
+			z-index: 1;
+		}
+	</style>
+</head>
+<body>
+	<div class="bubble1"></div>
+	<div class="bubble2"></div>
+	<div class="bubble3"></div>
+</body>
+</html>
