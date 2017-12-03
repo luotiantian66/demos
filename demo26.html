@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo26</title>
+</head>
+<body>
+	<div class="ct">
+		<div class="b1">饥
+			<div class="b2">人
+				<div class="b3">谷</div>
+			</div>
+		</div>	
+	</div>
+	<script>
+		function $(idx){
+			return document.querySelector(idx)
+		}
+		$('.b1').addEventListener('click',function(e){
+			console.log('b1')
+		},true)
+		$('.b2').addEventListener('click',function(e){
+			e.stopPropagation()
+			console.log('b2')
+		},true)
+		$('.b3').addEventListener('click',function(e){
+			console.log('b3')
+		},true)
+	</script>
+</body>
+</html>
