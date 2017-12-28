@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jewelry</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		
+		.clearfix:after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+
+		
+		.container {
+			margin:10px auto;
+			width: 800px;	
+		}
+		.title {
+			text-align: left;
+			
+		}
+		ul {
+			text-align: center;
+			margin-left: -20px;
+
+		}
+		li {
+			float: left;
+			position: relative;
+			border: 1px solid grey;
+			margin:10px 0;
+			margin-left: 21px;
+			list-style: none;
+		}
+		img {
+			padding: 20px;
+		}
+		li p {
+			font-size: 12px;
+			text-align: left;
+			padding: 5px 10px;
+		}
+		li p:nth-child(odd) {
+			color: red;
+		}
+		.btn {
+			margin:30px 0;	
+		}
+		a {
+			padding: 14px;
+			font-size: 16px;
+			color: red;
+			border: 1px solid red;
+			border-radius: 4px;
+			outline: none;
+			background-color: white;
+			cursor: pointer;
+		}
+		
+		.dele {
+			display: none;
+			position: absolute;
+			z-index: 1;
+			top:calc(50% - 24px);
+			left: calc(50% - 31px);
+		}
+		.cover {
+			background-color: grey;
+			opacity: 0.8;
+		}
+	</style>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+
+	<div class="container">
+		<div class="title"><h1>珠宝</h1></div>
+		<ul class ="info clearfix">	
+			<li class="">		
+				<img src="https://picsum.photos/200/200/?image=1">
+				<p>藏美千足金</p>
+				<p>¥1699.00</p>
+				<a class="dele">删除</a>
+			</li>
+			<li class="">		
+				<img src="https://picsum.photos/200/200/?image=2">
+				<p>藏美千足金</p>
+				<p>¥1699.00</p>	
+				<a class="dele">删除</a>
+			</li>
+			<li class="">
+				<img src="https://picsum.photos/200/200/?image=3">
+				<p>藏美千足金</p>
+				<p>¥1699.00</p>
+				<a class="dele">删除</a>
+			</li>
+		</ul>
+		<div class="btn">
+			<a class="btn1">添加</a>
+			<a class="btn2">编辑</a>
+		</div>		
+	</div>
+<script>
+
+	$('.btn1').on('click',function(){
+		var url1 = 'https://picsum.photos/200/200/?image=' + Math.floor(Math.random()*99+1)
+		var url2 = 'https://picsum.photos/200/200/?image=' + Math.floor(Math.random()*99+1)
+		var url3 = 'https://picsum.photos/200/200/?image=' + Math.floor(Math.random()*99+1)
+		//console.log(url1)
+		var htmlUrl1 = '<li><img src=' + url1 + '>' +
+				'<p>藏美千足金</p>' + '<p>¥' + Math.floor(Math.random()*99+1) + '</p>' + '<a class="dele">删除</a>'+ '</li>' 
+		var htmlUrl2 = '<li><img src=' + url2 + '>' +
+				'<p>藏美千足金</p>' + '<p>¥' + Math.floor(Math.random()*99+1) + '</p>' + '<a class="dele">删除</a>'+ '</li>' 
+		var htmlUrl3 = '<li><img src=' + url3 + '>'+
+				'<p>藏美千足金</p>' + '<p>¥' + Math.floor(Math.random()*99+1) + '</p>' + '<a class="dele">删除</a>'+ '</li>' 
+		//console.log(htmlUrl1)		
+		$('.info').append(htmlUrl1).append(htmlUrl2).append(htmlUrl3)
+		$('.dele').css("display","none")
+		$('li').removeClass("cover")
+	})
+		
+	
+	$('.btn2').on('click',function(){
+		if ($('.dele').css("display") == "none"){
+			$('.dele').css("display",'block')
+		}else{
+			$('.dele').css("display",'none')
+		}
+		$('li').toggleClass("cover")
+	})
+
+	$('ul').on('click','a.dele',function(){
+		//console.log($(this))
+		($(this)).parent('li').remove()
+	})
+</script>
+</body>
+</html>
