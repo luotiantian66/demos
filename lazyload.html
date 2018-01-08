@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>懒加载</title>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<style>
+		* {
+			margin:0;
+			padding:0;
+		}
+		img {
+			width: 200px;
+			height: 200px;
+			margin:10px;
+		}
+		.container {
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.wrapper {
+			width: 660px;
+			margin:0 auto;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+	<div class="container">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=1">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=2">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=3">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=4">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=5">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=6">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=7">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=8">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=9">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=10">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=11">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=12">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=13">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=14">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=15">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=16">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=17">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=18">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=19">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=20">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=21">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=22">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=23">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=24">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=25">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=26">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=27">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=28">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=29">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515348351090&di=1b62c4174632f8042bb8523b2450a588&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01491557e1e0f00000012e7e66d689.gif" data-src="https://picsum.photos/200/200/?image=30">
+	</div>
+	</div>
+</body>
+<script>
+	init()
+
+	$(window).on('scroll',function(){
+		init()
+	})
+
+	function init(){
+		$('.container img').not('.loaded').each(function(){
+			var $node = $(this)
+			if(isShown($node) == true) {
+				loadImg($node)
+			}
+		})
+	}
+
+	function isShown($node){
+		if(($node.offset().top - $(window).height() <=  $(window).scrollTop())&&($(window).scrollTop() <= $node.offset().top)){
+			return true
+		}else {
+			return false
+		}
+	}
+
+	function loadImg($img){
+		$img.addClass("loaded")
+		$img.attr('src',$img.attr('data-src'))
+	}
+</script>
+</html>
