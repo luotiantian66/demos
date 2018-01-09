@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>瀑布流</title>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<style>
+		* {
+			margin:0;
+			padding:0;
+		}
+		.container {
+			width: 90%;
+			position: relative;
+			margin:0 auto;
+		}
+		img {
+			position: absolute;
+			width: 100px;
+			margin:10px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<img src="https://picsum.photos/100/70/?image=26" alt="">
+		<img src="https://picsum.photos/100/300/?image=26" alt="">
+		<img src="https://picsum.photos/100/200/?image=26" alt="">
+		<img src="https://picsum.photos/100/70/?image=26" alt="">
+		<img src="https://picsum.photos/100/150/?image=26" alt="">
+		<img src="https://picsum.photos/100/90/?image=26" alt="">
+		<img src="https://picsum.photos/100/220/?image=26" alt="">
+		<img src="https://picsum.photos/100/130/?image=26" alt="">
+		<img src="https://picsum.photos/100/170/?image=26" alt="">
+		<img src="https://picsum.photos/100/70/?image=26" alt="">
+		<img src="https://picsum.photos/100/300/?image=26" alt="">
+		<img src="https://picsum.photos/100/200/?image=26" alt="">
+		<img src="https://picsum.photos/100/70/?image=26" alt="">
+		<img src="https://picsum.photos/100/150/?image=26" alt="">
+		<img src="https://picsum.photos/100/90/?image=26" alt="">
+		<img src="https://picsum.photos/100/220/?image=26" alt="">
+		<img src="https://picsum.photos/100/130/?image=26" alt="">
+		<img src="https://picsum.photos/100/170/?image=26" alt="">
+		<img src="https://picsum.photos/100/70/?image=26" alt="">
+		<img src="https://picsum.photos/100/300/?image=26" alt="">
+		<img src="https://picsum.photos/100/200/?image=26" alt="">
+		<img src="https://picsum.photos/100/70/?image=26" alt="">
+		<img src="https://picsum.photos/100/150/?image=26" alt="">
+		<img src="https://picsum.photos/100/90/?image=26" alt="">
+		<img src="https://picsum.photos/100/220/?image=26" alt="">
+		<img src="https://picsum.photos/100/130/?image=26" alt="">
+		<img src="https://picsum.photos/100/170/?image=26" alt="">
+		<!-- <img src="https://picsum.photos/100/70/?image=29" alt="">
+		<img src="https://picsum.photos/100/100/?image=20" alt="">
+		<img src="https://picsum.photos/100/200/?image=21" alt="">
+		<img src="https://picsum.photos/100/150/?image=19" alt="">
+		<img src="https://picsum.photos/100/90/?image=16" alt="">
+		<img src="https://picsum.photos/100/300/?image=18" alt="">
+		<img src="https://picsum.photos/100/180/?image=17" alt="">
+		<img src="https://picsum.photos/100/90/?image=19" alt="">
+		<img src="https://picsum.photos/100/300/?image=15" alt="">
+		<img src="https://picsum.photos/100/180/?image=13" alt=""> -->
+	</div>
+</body>
+<script>	
+
+var waterfall = {
+
+	init:function(){
+		this.$container = $('.container')
+		this.$img = $('.container img')
+		this.$imgWidth = this.$img.outerWidth(true)	
+		this.$colHeight = []	
+		this.$colNum 
+		this.$colNum = Math.floor(this.$container.width()/this.$imgWidth)
+		for(i=0;i<this.$colNum;i++){
+			this.$colHeight[i] = 0;
+		}			
+		this.load()
+	},
+	load:function(){
+		var _this = this
+		$('img').on('load',function(){				
+			_this.paint($(this))
+		})
+		$(window).on('resize',function(){
+			var __this = this
+			_this.$colNum = Math.floor(_this.$container.width()/_this.$imgWidth)
+			for(i=0;i<_this.$colNum;i++){
+				_this.$colHeight[i] = 0;
+			}			
+			$('img').each(function(){
+				_this.paint($(this))
+
+			})			
+		})
+	},
+	paint:function($node){	
+		var minHeight = this.$colHeight[0]
+		var minIndex = 0
+		for(var i=0;i<this.$colNum;i++){
+			if(this.$colHeight[i]<minHeight){
+				minHeight=this.$colHeight[i]
+				minIndex = i
+			}		
+		}
+		$node.css({
+			'top': minHeight,
+			'left': minIndex * this.$imgWidth
+		})
+		this.$colHeight[minIndex] = this.$colHeight[minIndex] + $node.outerHeight(true)
+	}
+}
+	waterfall.init()
+
+
+	// function waterfall(){	
+	// 	var imgWidth = $('.container img').outerWidth(true)	
+	// 	var colNum 
+	// 	var colHeight = []	
+	// 	colNum = Math.floor(($('.container').width())/imgWidth)
+	// 	for(i=0;i<colNum;i++){
+	// 		colHeight[i] = 0;
+	// 	}	
+	// 	$('img').on('load',function(){
+	// 		paint($(this))		
+	// 	})
+	// 	function paint($node){
+	// 		var minHeight = colHeight[0]
+	// 		var minIndex = 0
+	// 		for(var i=0;i<colNum;i++){
+	// 			if(colHeight[i]<minHeight){
+	// 				minHeight=colHeight[i]
+	// 				minIndex = i
+	// 			}		
+	// 		}
+	// 		console.log(colHeight)
+	// 		$node.css({
+	// 			'top': minHeight,
+	// 			'left': minIndex * imgWidth
+	// 		})
+	// 		colHeight[minIndex] = colHeight[minIndex] + $node.outerHeight(true)
+	// 	}
+	// }
+
+
+	
+	// $(window).on('resize',function(){
+	// 	console.log('change')
+	// 	var imgWidth = $('.container img').outerWidth(true)
+	// 	colNum = Math.floor(($('.container').width())/imgWidth)
+	// 	var colNum 
+	// 	var colHeight = []	
+	// 	for(i=0;i<colNum;i++){
+	// 		colHeight[i] = 0;
+	// 	}	
+	// 	$('img').each(function(){
+	// 		paint($(this))		
+	// 	})
+	// 	function paint($node){
+	// 		var minHeight = colHeight[0]
+	// 		var minIndex = 0
+	// 		for(var i=0;i<colNum;i++){
+	// 			if(colHeight[i]<minHeight){
+	// 				minHeight=colHeight[i]
+	// 				minIndex = i
+	// 			}		
+	// 		}
+	// 		console.log(colHeight)
+	// 		$node.css({
+	// 			'top': minHeight,
+	// 			'left': minIndex * imgWidth
+	// 		})
+	// 		colHeight[minIndex] = colHeight[minIndex] + $node.outerHeight(true)
+	// 	}
+	// })
+		
+
+
+</script>
+</html>
